@@ -1,6 +1,6 @@
-# Swaptrade About recreation
+# SwapTrade: About & Security Web elements
 
-A close recreation of the deployed Swaptrade About page with a custom, dependency-free WebGL particle globe in the hero media card.
+Design and exploration of animations and interactive visual elements for the SwapTrade About and Security pages, helping bring more personality and depth to the website while staying consistent with the existing visual direction.
 
 ## Run locally
 
