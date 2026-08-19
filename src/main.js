@@ -26,13 +26,13 @@ document.querySelector('#app').innerHTML = `
   <header class="swaptrade-nav">
     <button class="swaptrade-nav__menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     <nav class="swaptrade-nav__links" aria-label="Primary">
-      <a href="/about">About</a><a href="/security">Services</a>
+      <a href="/about">About</a><a href="/security">Security</a>
     </nav>
     <div class="swaptrade-nav__actions">
       <div class="visual-mode" role="group" aria-label="Rocket visual style"><button class="visual-mode__option is-active" data-mode="particles" aria-pressed="true">Particles</button><button class="visual-mode__option" data-mode="illustrations" aria-pressed="false">3D Illustrations</button></div>
     </div>
   </header>
-  <div class="mobile-drawer" aria-hidden="true"><nav><a href="/about">About</a><a href="/security">Services</a></nav></div>
+  <div class="mobile-drawer" aria-hidden="true"><nav><a href="/about">About</a><a href="/security">Security</a></nav></div>
 
   <main class="swaptrade-about">
     <section class="swaptrade-about-hero">
