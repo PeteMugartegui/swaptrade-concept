@@ -20,10 +20,10 @@ void main() {
   float influence=smoothstep(0.52,0.0,dist)*uPointerStrength;
   float randomAngle=fract(aSeed*37.17)*6.28318+sin(uTime*.7+aSeed*19.0)*.28;
   float randomForce=.13+fract(aSeed*91.7)*.24;
-  vec2 burst=vec2(cos(randomAngle)*uAspect,sin(randomAngle))*influence*randomForce;
-  vec2 repel=normalize(delta+vec2(0.0001))*influence*.07;
+  vec2 burst=vec2(cos(randomAngle)*uAspect,sin(randomAngle))*influence*randomForce*1.3;
+  vec2 repel=normalize(delta+vec2(0.0001))*influence*.091;
   p.xy += burst+vec2(repel.x*uAspect,repel.y);
-  p.z += influence*(fract(aSeed*53.1)-.2)*.72;
+  p.z += influence*(fract(aSeed*53.1)-.2)*.936;
   p *= 1.08;
   float perspective=1.0/(2.55-p.z*0.34);
   gl_Position=vec4(p.x*perspective/uAspect*2.05,p.y*perspective*2.05,0.0,1.0);

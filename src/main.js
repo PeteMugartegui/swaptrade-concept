@@ -4,6 +4,7 @@ import { ParticleRocket } from './particle-rocket.js';
 import { ParticleLogo } from './particle-logo.js';
 import { ParticleAws } from './particle-aws.js';
 import { ParticleSecurityVisual } from './particle-security.js';
+import { ParticleAcademy } from './particle-academy.js';
 
 const shield = `<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 44s16-8 16-20V10L24 4 8 10v14c0 12 16 20 16 20Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m18 24 4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const chevron = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -26,13 +27,13 @@ document.querySelector('#app').innerHTML = `
   <header class="swaptrade-nav">
     <button class="swaptrade-nav__menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     <nav class="swaptrade-nav__links" aria-label="Primary">
-      <a href="/about">About</a><a href="/security">Security</a>
+      <a href="/about">About</a><a href="/security">Security</a><a href="/academy">Academy</a>
     </nav>
     <div class="swaptrade-nav__actions">
       <div class="visual-mode" role="group" aria-label="Rocket visual style"><button class="visual-mode__option is-active" data-mode="particles" aria-pressed="true">Particles</button><button class="visual-mode__option" data-mode="illustrations" aria-pressed="false">3D Illustrations</button></div>
     </div>
   </header>
-  <div class="mobile-drawer" aria-hidden="true"><nav><a href="/about">About</a><a href="/security">Security</a></nav></div>
+  <div class="mobile-drawer" aria-hidden="true"><nav><a href="/about">About</a><a href="/security">Security</a><a href="/academy">Academy</a></nav></div>
 
   <main class="swaptrade-about">
     <section class="swaptrade-about-hero">
@@ -107,8 +108,94 @@ const securityMarkup = `
     </section>
   </main>`;
 
+const academyCourses = [
+  {
+    level: 'LEVEL 1 · BEGINNER',
+    accent: 'success',
+    icon: '◇',
+    title: 'Beginner Crypto Course',
+    description: 'A grounded introduction to how crypto actually works — the mechanics behind blockchains and wallets, why prices move the way they do, and the habits that keep your funds safe.',
+    topics: ['How blockchains and wallets actually work', 'Custodial vs. self-custody, and how to choose', 'Why crypto is more volatile than traditional markets', 'Practical habits that prevent most security mistakes'],
+    meta: '4 weeks · 12 topics · 4 quizzes · 2 hr 40 min',
+    href: '/academy/beginner'
+  },
+  {
+    level: 'LEVEL 2 · INTERMEDIATE',
+    accent: 'primary',
+    icon: '⌁',
+    title: 'Intermediate Crypto Course',
+    description: 'Build real practical competence — reading on-chain data and liquidity, understanding how DeFi protocols actually work, evaluating a project before you buy, and managing risk like a portfolio.',
+    topics: ['Reading on-chain data and market liquidity', 'How AMMs, lending, and DeFi yield actually work', 'A framework for evaluating any project before buying', 'Portfolio risk management and tax basics'],
+    meta: '4 weeks · 12 topics · 4 quizzes · 2 hr 43 min',
+    href: '/academy/intermediate'
+  },
+  {
+    level: 'LEVEL 3 · ADVANCED',
+    accent: 'accent',
+    icon: '△',
+    title: 'Advanced Crypto Course',
+    description: 'Go deep on protocol-level mechanics — consensus and scaling trade-offs, MEV and market microstructure, smart contract and bridge risk, and how tokenomics and governance hold up under scrutiny.',
+    topics: ['Consensus design, scaling trade-offs, and rollups', 'MEV and how block space became a market', 'Smart contract and cross-chain bridge risk', 'Tokenomics, governance, and macro'],
+    meta: '4 weeks · 12 topics · 4 quizzes · 2 hr 46 min',
+    href: '/academy/advanced'
+  }
+];
+
+const academyFeatures = [
+  ['◷', 'Self-Paced Lessons', 'Learn on your own schedule with bite-sized lessons you can revisit anytime.'],
+  ['✦', 'Expert-Led Content', 'Courses built by experienced traders and blockchain educators.'],
+  ['◎', 'Community Support', 'Join fellow learners to ask questions and share strategies.'],
+  ['✓', 'Track Your Progress', 'Pick up where you left off and measure how far you have come.']
+];
+
+const academyMarkup = `
+  <main class="swaptrade-academy">
+    <section class="academy-hero">
+      <div class="academy-hero__inner">
+        <div class="academy-hero__copy">
+          <p class="eyebrow">ACADEMY</p>
+          <h1>Learn Crypto at Your Own Pace</h1>
+          <p>From your very first wallet to protocol-level trading strategies, Swaptrade Academy has a free course for wherever you are in your crypto journey.</p>
+        </div>
+        <div class="academy-hero__media" aria-hidden="true">
+          <canvas id="particle-academy"></canvas>
+          <div class="crypto-coin crypto-coin--btc">
+            <span class="coin-orbit coin-orbit--outer"><i></i><b></b></span><span class="coin-orbit coin-orbit--inner"></span><div class="coin-face"><span>₿</span></div>
+          </div>
+          <div class="crypto-coin crypto-coin--eth">
+            <span class="coin-orbit coin-orbit--outer"><i></i><b></b></span><span class="coin-orbit coin-orbit--inner"></span><div class="coin-face"><svg viewBox="0 0 32 48"><path d="M16 1 2 25l14 8 14-8L16 1Z"/><path d="m2 28 14 19 14-19-14 8-14-8Z"/></svg></div>
+          </div>
+          <div class="crypto-coin crypto-coin--usdt">
+            <span class="coin-orbit coin-orbit--outer"><i></i><b></b></span><span class="coin-orbit coin-orbit--inner"></span><div class="coin-face"><span>₮</span></div>
+          </div>
+          <div class="academy-orbit academy-orbit--one"></div><div class="academy-orbit academy-orbit--two"></div>
+          <div class="academy-illustration"><div class="academy-book"><span></span><strong>₿</strong><i></i></div><span class="academy-spark academy-spark--one">✦</span><span class="academy-spark academy-spark--two">·</span><span class="academy-spark academy-spark--three">✦</span></div>
+          <p class="particle-visual-hint academy-particle-hint">Move to explore</p>
+        </div>
+      </div>
+    </section>
+    <section class="academy-courses">
+      <div class="academy-section__inner">
+        <div class="academy-heading"><p class="eyebrow">COURSES</p><h2>Pick the Course That Fits You</h2></div>
+        <div class="academy-courses__grid">${academyCourses.map(course => `<article class="academy-course-card"><span class="academy-badge academy-badge--${course.accent}">${course.level}</span><span class="academy-course-card__icon" aria-hidden="true">${course.icon}</span><h3>${course.title}</h3><p>${course.description}</p><ul>${course.topics.map(topic => `<li>${topic}</li>`).join('')}</ul><p class="academy-course-card__meta">${course.meta}</p><a class="academy-btn academy-btn--primary" href="${course.href}">Start Course</a></article>`).join('')}</div>
+      </div>
+    </section>
+    <section class="academy-features">
+      <div class="academy-section__inner">
+        <div class="academy-heading"><p class="eyebrow">WHY SWAPTRADE ACADEMY?</p><h2>Everything You Need to Learn Crypto</h2></div>
+        <div class="academy-features__grid">${academyFeatures.map(([icon,title,body]) => `<article class="academy-feature-card"><span class="academy-feature-card__icon" aria-hidden="true">${icon}</span><div><h3>${title}</h3><p>${body}</p></div></article>`).join('')}</div>
+      </div>
+    </section>
+    <section class="academy-cta"><div class="academy-cta__inner"><div><h2>Ready to start learning?</h2><p>Jump into the Beginner course today — it’s free and takes less than an hour a week.</p></div><div class="academy-cta__actions"><a class="academy-btn academy-btn--primary" href="/academy/beginner">Start Beginner Course</a><a class="academy-btn academy-btn--ghost" href="#">Have Questions?</a></div></div></section>
+  </main>`;
+
 if (window.location.pathname.startsWith('/security')) {
   document.querySelector('.swaptrade-about').outerHTML = securityMarkup;
+}
+
+if (window.location.pathname.startsWith('/academy')) {
+  document.querySelector('.swaptrade-about').outerHTML = academyMarkup;
+  document.title = 'Academy | Swaptrade';
 }
 
 const menuButton = document.querySelector('.swaptrade-nav__menu-toggle');
@@ -162,6 +249,12 @@ for (const [id, mode] of [['security-hero-particles','hero'],['security-world-pa
   }
 }
 
+const academyCanvas = document.querySelector('#particle-academy');
+try { if (academyCanvas) new ParticleAcademy(academyCanvas); } catch (error) {
+  console.warn('WebGL academy fallback enabled', error);
+  if (academyCanvas) academyCanvas.hidden = true;
+}
+
 function setVisualMode(mode) {
   const showIllustration = mode === 'illustrations';
   if (rocketCanvas) rocketCanvas.hidden = showIllustration;
@@ -186,6 +279,13 @@ function setVisualMode(mode) {
     if (securityImage) securityImage.hidden = !showIllustration;
   }
   document.querySelectorAll('.security-visual--world .particle-visual-hint, .security-visual--standards .particle-visual-hint').forEach(hint => { hint.hidden = showIllustration; });
+  if (academyCanvas) academyCanvas.hidden = showIllustration;
+  const academyIllustration = document.querySelector('.academy-illustration');
+  if (academyIllustration) academyIllustration.hidden = !showIllustration;
+  document.querySelectorAll('.academy-hero__media .crypto-coin').forEach(coin => { coin.hidden = showIllustration; });
+  document.querySelectorAll('.academy-orbit').forEach(orbit => { orbit.hidden = !showIllustration; });
+  const academyHint = document.querySelector('.academy-particle-hint');
+  if (academyHint) academyHint.hidden = showIllustration;
   document.querySelectorAll('.visual-mode__option').forEach(button => {
     const active = button.dataset.mode === mode;
     button.classList.toggle('is-active', active);

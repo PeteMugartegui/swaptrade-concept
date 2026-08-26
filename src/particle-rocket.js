@@ -20,7 +20,7 @@ void main(){
   float randomAngle=fract(aSeed*37.17)*6.28318+sin(uTime*.7+aSeed*19.0)*.28;
   float randomForce=.14+fract(aSeed*91.7)*.25;
   vec2 direction=normalize(delta+vec2(.0001));
-  p+=vec2(cos(randomAngle)*uAspect,sin(randomAngle))*influence*randomForce+vec2(direction.x*uAspect,direction.y)*influence*.07;
+  p+=vec2(cos(randomAngle)*uAspect,sin(randomAngle))*influence*randomForce*1.3+vec2(direction.x*uAspect,direction.y)*influence*.091;
   gl_Position=vec4(p.x/uAspect,p.y,0.0,1.0);
   gl_PointSize=1.7+aSeed*1.35+influence*(1.0+fract(aSeed*11.2)*2.0);
   vSeed=aSeed;
